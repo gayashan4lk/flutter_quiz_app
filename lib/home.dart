@@ -28,11 +28,12 @@ class Home extends StatelessWidget {
                   style: TextStyle(fontSize: 42, fontWeight: FontWeight.bold, color: Colors.white),
                 ),
               ),
-              ElevatedButton(
+              ElevatedButton.icon(
                 onPressed: () {
                   Navigator.pushNamed(context, "/quiz");
                 },
-                child: const Text("Start Quiz"),
+                icon: const Icon(Icons.arrow_right_alt),
+                label: const Text("Start Quiz"),
               ),
             ],
           ),
