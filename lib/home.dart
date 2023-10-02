@@ -30,7 +30,7 @@ class Home extends StatelessWidget {
               ),
               ElevatedButton.icon(
                 onPressed: () {
-                  Navigator.pushNamed(context, "/quiz");
+                  Navigator.pushNamed(context, "/shop");
                 },
                 icon: const Icon(Icons.arrow_right_alt),
                 label: const Text("Start Quiz"),

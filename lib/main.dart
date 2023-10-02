@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_quiz_app/home.dart';
+
+import 'home.dart';
+import 'shop.dart';
+import 'about.dart';
+import 'contact.dart';
 
 void main() {
   runApp(const QuizApp());
@@ -17,6 +21,12 @@ class QuizApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const Home(),
+      routes: {
+        '/shop': (context) => const Shop(),
+        '/about': (context) => const About(),
+        '/contact': (context) => const Contact(),
+      },
+      initialRoute: '/',
     );
   }
 }
