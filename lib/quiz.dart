@@ -5,7 +5,9 @@ import 'widgets/answer_button.dart';
 import 'widgets/question_text.dart';
 
 class Quiz extends StatelessWidget {
-  const Quiz({super.key});
+  Quiz({super.key});
+
+  final shuffledAnsers = questions[0].answers.toList()..shuffle();
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class Quiz extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               QuestionText(questions[0].question),
-              ...questions[0].answers.map((answer) => AnswerButton(answer.answer)),
+              ...shuffledAnsers.map((answer) => AnswerButton(answer.answer)),
               const SizedBox(height: 100),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
