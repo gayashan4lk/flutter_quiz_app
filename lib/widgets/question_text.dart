@@ -11,7 +11,7 @@ class QuestionText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.7,
+      width: MediaQuery.of(context).size.width * 0.75,
       padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 20),
       child: Text(
         text,

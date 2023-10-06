@@ -9,9 +9,9 @@ class AnswerButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints(
-        maxWidth: MediaQuery.of(context).size.width * 0.8,
+        maxWidth: MediaQuery.of(context).size.width * 0.75,
       ),
-      alignment: Alignment.topCenter,
+      alignment: Alignment.topLeft,
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 0),
       child: FilledButton.tonal(
         onPressed: () {
