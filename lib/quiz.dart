@@ -48,9 +48,12 @@ class _QuizState extends State<Quiz> {
     }
   }
 
-  handleAnswerSelect(QuizAnswer answer){
+  void handlePressFinishBtn() {
+    Navigator.pushNamed(context, '/scores', arguments: answers);
+  }
+
+  handleAnswerSelect(QuizAnswer answer) {
     answers[indexOfQues] = answer.isCorrect;
-    print(answers);
   }
 
   @override
@@ -70,23 +73,35 @@ class _QuizState extends State<Quiz> {
             children: <Widget>[
               const SizedBox(height: 30),
               QuestionText(questions[indexOfQues].question),
-              ...shuffleAnswers(questions[indexOfQues].answers).map((answer) =>
-                  AnswerButton(answer, handleAnswerSelect)),
+              ...shuffleAnswers(questions[indexOfQues].answers)
+                  .map((answer) => AnswerButton(answer, handleAnswerSelect)),
               const SizedBox(height: 100),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  ElevatedButton.icon(
-                    onPressed: handlePressPrevBtn,
-                    icon: const Icon(Icons.arrow_circle_left_sharp),
-                    label: const Text("Prev"),
-                  ),
+                  (indexOfQues == 0)
+                      ? ElevatedButton.icon(
+                          onPressed: null,
+                          icon: const Icon(Icons.arrow_circle_left_sharp),
+                          label: const Text("Prev"),
+                        )
+                      : ElevatedButton.icon(
+                          onPressed: handlePressPrevBtn,
+                          icon: const Icon(Icons.arrow_circle_left_sharp),
+                          label: const Text("Prev"),
+                        ),
                   const SizedBox(width: 30),
-                  ElevatedButton.icon(
-                    onPressed: handlePressNextBtn,
-                    icon: const Icon(Icons.arrow_circle_right_sharp),
-                    label: const Text("Next"),
-                  ),
+                  (indexOfQues == (questions.length - 1))
+                      ? ElevatedButton.icon(
+                          onPressed: handlePressFinishBtn,
+                          icon: const Icon(Icons.check_circle_sharp),
+                          label: const Text("Finish"),
+                        )
+                      : ElevatedButton.icon(
+                          onPressed: handlePressNextBtn,
+                          icon: const Icon(Icons.arrow_circle_right_sharp),
+                          label: const Text("Next"),
+                        ),
                 ],
               )
             ],
