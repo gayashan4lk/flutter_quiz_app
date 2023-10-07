@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_quiz_app/global_layout.dart';
 
 import 'home.dart';
 import 'quiz.dart';
