@@ -5,6 +5,10 @@ class Scores extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final results = ModalRoute.of(context)?.settings.arguments as List<bool>;
+
+    print(results);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Quiz App"),
@@ -14,12 +18,11 @@ class Scores extends StatelessWidget {
           color: Colors.deepPurple,
         ),
         alignment: Alignment.center,
-        child: const SizedBox(
+        child: SizedBox(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Your Score is:"),
-              Text("5/10"),
+              ...results.map((result) => Text(result.toString())),
             ],
           ),
         ),
