@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
-class AnswerButton extends StatelessWidget {
-  const AnswerButton(this.text, {super.key});
+import '../models/quiz_answer.dart';
 
-  final String text;
+class AnswerButton extends StatelessWidget {
+  const AnswerButton(this.answer, this.handleOnPressed, {super.key});
+
+  //final String text;
+  final QuizAnswer answer;
+  final Function(QuizAnswer) handleOnPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +19,7 @@ class AnswerButton extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 0),
       child: FilledButton.tonal(
         onPressed: () {
-          print("Pressed");
+          handleOnPressed(answer);
         },
         style: FilledButton.styleFrom(
           padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
@@ -25,7 +29,7 @@ class AnswerButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
           ),
         ),
-        child: Text(text),
+        child: Text(answer.text),
       ),
     );
   }

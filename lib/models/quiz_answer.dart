@@ -1,6 +1,6 @@
 class QuizAnswer {
-  const QuizAnswer(this.answer, this.isCorrect);
+  const QuizAnswer(this.text, this.isCorrect);
 
-  final String answer;
+  final String text;
   final bool isCorrect;
 }

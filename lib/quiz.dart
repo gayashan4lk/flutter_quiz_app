@@ -14,16 +14,43 @@ class Quiz extends StatefulWidget {
 
 class _QuizState extends State<Quiz> {
   int indexOfQues = 0;
+  late List<bool> answers;
 
   @override
   void initState() {
     indexOfQues = 0;
+    answers = List<bool>.generate(questions.length, (index) => false);
     super.initState();
   }
 
-  List<QuizAnswer> shuffleAnswers(List<QuizAnswer> answers){
+  List<QuizAnswer> shuffleAnswers(List<QuizAnswer> answers) {
     var shuffledAnswers = answers.toList()..shuffle();
     return shuffledAnswers;
+  }
+
+  dynamic handlePressNextBtn() {
+    if ((questions.length - 1) > indexOfQues) {
+      return setState(() {
+        indexOfQues++;
+      });
+    } else {
+      return null;
+    }
+  }
+
+  dynamic handlePressPrevBtn() {
+    if (0 < indexOfQues) {
+      return setState(() {
+        indexOfQues--;
+      });
+    } else {
+      return null;
+    }
+  }
+
+  handleAnswerSelect(QuizAnswer answer){
+    answers[indexOfQues] = answer.isCorrect;
+    print(answers);
   }
 
   @override
@@ -43,19 +70,20 @@ class _QuizState extends State<Quiz> {
             children: <Widget>[
               const SizedBox(height: 30),
               QuestionText(questions[indexOfQues].question),
-              ...shuffleAnswers(questions[indexOfQues].answers).map((answer) => AnswerButton(answer.answer)),
+              ...shuffleAnswers(questions[indexOfQues].answers).map((answer) =>
+                  AnswerButton(answer, handleAnswerSelect)),
               const SizedBox(height: 100),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   ElevatedButton.icon(
-                    onPressed: () => {setState(() { indexOfQues--; })},
+                    onPressed: handlePressPrevBtn,
                     icon: const Icon(Icons.arrow_circle_left_sharp),
                     label: const Text("Prev"),
                   ),
                   const SizedBox(width: 30),
                   ElevatedButton.icon(
-                    onPressed: () => {setState(() { indexOfQues++; })},
+                    onPressed: handlePressNextBtn,
                     icon: const Icon(Icons.arrow_circle_right_sharp),
                     label: const Text("Next"),
                   ),
