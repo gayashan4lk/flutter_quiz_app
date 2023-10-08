@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'data/questions_data.dart';
+
 class Scores extends StatelessWidget {
   const Scores({Key? key}) : super(key: key);
 
@@ -7,7 +9,11 @@ class Scores extends StatelessWidget {
   Widget build(BuildContext context) {
     final results = ModalRoute.of(context)?.settings.arguments as List<bool>;
 
-    print(results);
+    final myComp = questions.map((ques) => {
+          "question": ques.question,
+          "isCorrect": (results[questions.indexOf(ques)]),
+          "correctAnswer": ques.answers.where((answer) => answer.isCorrect).map((answer) => answer.text).first,
+        });
 
     return Scaffold(
       appBar: AppBar(
@@ -17,12 +23,26 @@ class Scores extends StatelessWidget {
         decoration: const BoxDecoration(
           color: Colors.deepPurple,
         ),
-        alignment: Alignment.center,
         child: SizedBox(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ...results.map((result) => Text(result.toString())),
+              const SizedBox(
+                height: 50,
+                child: Text("Results"),
+              ),
+              ...myComp.map(
+                (item) => Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(item["question"].toString()),
+                    Text(item["isCorrect"] as bool ? "Correct" : "Wrong"),
+                    Text("Correct Answer: ${item["correctAnswer"].toString()}"),
+                    const SizedBox(height: 20)
+                  ],
+                ),
+              )
             ],
           ),
         ),
