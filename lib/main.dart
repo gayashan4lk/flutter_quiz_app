@@ -25,10 +25,10 @@ class QuizApp extends StatelessWidget {
       home: const Home(),
       routes: {
         '/quiz': (context) => Quiz(),
+        '/scores': (context) => const Scores(),
         '/shop': (context) => const Shop(),
         '/about': (context) => const About(),
         '/contact': (context) => const Contact(),
-        '/scores': (context) => const Scores(),
       },
       initialRoute: '/',
     );
