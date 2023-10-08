@@ -81,20 +81,24 @@ class _QuizState extends State<Quiz> {
             children: <Widget>[
               const SizedBox(height: 30),
               Container(
-                width: 30,
-                height: 30,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white,
-                ),
-                child: Center(
-                  child: Text(
-                    style: const TextStyle(
-                      color: Colors.deepPurple,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                alignment: Alignment.topLeft,
+                width: MediaQuery.of(context).size.width * 0.75,
+                child: Container(
+                  width: 30,
+                  height: 30,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.white,
+                  ),
+                  child: Center(
+                    child: Text(
+                      style: const TextStyle(
+                        color: Colors.deepPurple,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      getQuestionNumber(),
                     ),
-                    getQuestionNumber(),
                   ),
                 ),
               ),
