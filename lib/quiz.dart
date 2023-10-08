@@ -56,6 +56,14 @@ class _QuizState extends State<Quiz> {
     answers[indexOfQues] = answer.isCorrect;
   }
 
+  String getQuestionNumber() {
+    if (indexOfQues < 9) {
+      return "0${indexOfQues + 1}";
+    } else {
+      return (indexOfQues + 1).toString();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,6 +80,24 @@ class _QuizState extends State<Quiz> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               const SizedBox(height: 30),
+              Container(
+                width: 30,
+                height: 30,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                ),
+                child: Center(
+                  child: Text(
+                    style: const TextStyle(
+                      color: Colors.deepPurple,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    getQuestionNumber(),
+                  ),
+                ),
+              ),
               QuestionText(questions[indexOfQues].question),
               ...shuffleAnswers(questions[indexOfQues].answers)
                   .map((answer) => AnswerButton(answer, handleAnswerSelect)),
