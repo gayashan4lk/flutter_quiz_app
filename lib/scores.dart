@@ -23,28 +23,26 @@ class Scores extends StatelessWidget {
         decoration: const BoxDecoration(
           color: Colors.deepPurple,
         ),
-        child: SizedBox(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                height: 50,
-                child: Text("Results"),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(
+              height: 50,
+              child: Text("Results"),
+            ),
+            ...myComp.map(
+              (item) => Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(item["question"].toString()),
+                  Text(item["isCorrect"] as bool ? "Correct" : "Wrong"),
+                  Text("Correct Answer: ${item["correctAnswer"].toString()}"),
+                  const SizedBox(height: 20)
+                ],
               ),
-              ...myComp.map(
-                (item) => Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(item["question"].toString()),
-                    Text(item["isCorrect"] as bool ? "Correct" : "Wrong"),
-                    Text("Correct Answer: ${item["correctAnswer"].toString()}"),
-                    const SizedBox(height: 20)
-                  ],
-                ),
-              )
-            ],
-          ),
+            )
+          ],
         ),
       ),
     );
