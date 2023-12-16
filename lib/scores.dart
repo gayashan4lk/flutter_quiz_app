@@ -9,7 +9,7 @@ class Scores extends StatelessWidget {
   Widget build(BuildContext context) {
     final results = ModalRoute.of(context)?.settings.arguments as List<bool>;
 
-    final myComp = questions.map((ques) => {
+    final answerData = questions.map((ques) => {
           "question": ques.question,
           "isCorrect": (results[questions.indexOf(ques)]),
           "correctAnswer": ques.answers.where((answer) => answer.isCorrect).map((answer) => answer.text).first,
@@ -31,7 +31,7 @@ class Scores extends StatelessWidget {
               height: 50,
               child: Text("Results"),
             ),
-            ...myComp.map(
+            ...answerData.map(
               (item) => Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
